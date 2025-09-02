@@ -9,6 +9,9 @@ function App() {
     return saved ? JSON.parse(saved) : [];
   });
 
+  // Estado para el contador de Vite + React
+  const [count, setCount] = useState(0);
+
   // Guardar en localStorage cuando cambian las tareas
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -81,6 +84,18 @@ function App() {
           </tbody>
         </table>
       </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
     </div>
   );
 }

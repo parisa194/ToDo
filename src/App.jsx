@@ -1,35 +1,88 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import TaskForm from "./components/TaskForm.jsx";
+import TaskList from "./components/TaskList.jsx";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tasks, setTasks] = useState(() => {
+    const saved = localStorage.getItem("tasks");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // Guardar en localStorage cuando cambian las tareas
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
+  const addTask = (text) => {
+    if (!text.trim()) {
+      alert("⚠️ Escribe una tarea antes de agregar.");
+      return;
+    }
+    setTasks([...tasks, { id: Date.now(), text, completed: false }]);
+  };
+
+  const toggleComplete = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
+  const editTask = (id, newText) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, text: newText } : task
+      )
+    );
+  };
+
+  // estadísticas
+  const total = tasks.length;
+  const completed = tasks.filter((t) => t.completed).length;
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app-container">
+      <h1>📋 Lista de Tareas</h1>
+
+      {/* Formulario */}
+      <TaskForm addTask={addTask} />
+
+      {/* Lista */}
+      <TaskList
+        tasks={tasks}
+        toggleComplete={toggleComplete}
+        deleteTask={deleteTask}
+        editTask={editTask}
+      />
+
+      {/* Estadísticas con tabla */}
+      <div className="stats">
+        <h2>📊 Estadísticas</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Total</th>
+              <th>Completadas</th>
+              <th>Pendientes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{total}</td>
+              <td>{completed}</td>
+              <td>{total - completed}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

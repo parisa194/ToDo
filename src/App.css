@@ -1,42 +1,272 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo general */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 30px;
+}
+
+/* Contenedor principal */
+.app-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  padding: 25px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 500px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Título */
+h1 {
   text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  letter-spacing: 1px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* FORMULARIO */
+.task-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 10px;
 }
 
-@keyframes logo-spin {
+.task-form input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.task-form input:focus {
+  border-color: #ffcc70;
+  box-shadow: 0 0 10px rgba(255, 204, 112, 0.6);
+  outline: none;
+}
+
+.task-form button {
+  background: #ffcc70;
+  color: #333;
+  font-weight: bold;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.task-form button:hover {
+  background: #ffd97d;
+  transform: translateY(-2px) scale(1.05);
+}
+
+.task-form button:active {
+  transform: scale(0.98);
+}
+
+/* LISTA DE TAREAS */
+.task-list {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.task-item {
+  background: rgba(255, 255, 255, 0.15);
+  margin-bottom: 12px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: slideUp 0.4s ease;
+  transition: transform 0.2s ease;
+}
+
+.task-item:hover {
+  transform: scale(1.02);
+}
+
+.task-item input[type="checkbox"] {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.task-text {
+  flex: 1;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.task-text.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Botón eliminar */
+.task-item button {
+  background: #ff6b6b;
+  border: none;
+  color: white;
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.task-item button:hover {
+  background: #ff8787;
+  transform: rotate(10deg) scale(1.1);
+}
+
+/* 📊 Estadísticas */
+.stats {
+  margin-top: 30px;
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.stats h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.stats table {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background: #ffffff;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.stats table:hover {
+  transform: scale(1.02);
+}
+
+.stats th {
+  background: linear-gradient(135deg, #6c63ff, #4a47a3);
+  color: #fff;
+  padding: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.stats td {
+  padding: 12px;
+  border-top: 1px solid #eee;
+  color: #444;
+}
+
+.stats tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+@media (max-width: 500px) {
+  .stats table {
+    font-size: 0.85rem;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(10px);
   }
+
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.card {
-  padding: 2em;
+/* 📱 RESPONSIVE DESIGN */
+
+/* Tablets (≤ 768px) */
+@media (max-width: 768px) {
+  .app-container {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .task-form {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .task-form input {
+    width: 100%;
+  }
+
+  .task-form button {
+    width: 100%;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+/* Celulares (≤ 480px) */
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+
+  .app-container {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .task-item button {
+    align-self: flex-end;
+  }
+
+  .stats {
+    font-size: 0.9rem;
+  }
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import TaskForm from "./components/TaskForm.jsx";
 import TaskList from "./components/TaskList.jsx";
 import "./App.css";
+import logo from "./assets/logo.png"; // 👈 Importar logo
 
 function App() {
   const [tasks, setTasks] = useState(() => {
@@ -9,9 +10,6 @@ function App() {
     return saved ? JSON.parse(saved) : [];
   });
 
-  
-
-  // Guardar en localStorage cuando cambian las tareas
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -44,18 +42,18 @@ function App() {
     );
   };
 
-  // estadísticas
   const total = tasks.length;
   const completed = tasks.filter((t) => t.completed).length;
 
   return (
     <div className="app-container">
+      {/* 👇 Logo agregado */}
+      <img src={logo} alt="Homework Check" className="logo" />
+
       <h1>📋 Lista de Tareas</h1>
 
-      {/* Formulario */}
       <TaskForm addTask={addTask} />
 
-      {/* Lista */}
       <TaskList
         tasks={tasks}
         toggleComplete={toggleComplete}
@@ -63,7 +61,6 @@ function App() {
         editTask={editTask}
       />
 
-      {/* Estadísticas con tabla */}
       <div className="stats">
         <h2>📊 Estadísticas</h2>
         <table>
@@ -83,8 +80,6 @@ function App() {
           </tbody>
         </table>
       </div>
-      
-      
     </div>
   );
 }

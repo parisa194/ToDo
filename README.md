@@ -1,12 +1,79 @@
-# React + Vite
+# 📋 Lista de Tareas (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación sencilla de lista de tareas construida con **React 19** y
+**Vite 7**, que permite:
 
-Currently, two official plugins are available:
+➕ Agregar nuevas tareas\
+✅ Editar tareas existentes\
+📝 Marcar tareas como completadas\
+🗑️  Eliminar tareas\
+   Guardar todo en **LocalStorage** (persistencia de datos)\
+📊 Ver **estadísticas** (total, completadas y pendientes)\
+✅ Logo personalizable y estilo en CSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+------------------------------------------------------------------------
 
-## Expanding the ESLint configuration
+## 🚀 Instalación y ejecución
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1.  Clonar el repositorio:
+
+``` bash
+git clone https://github.com/usuario/todo.git
+cd todo
+```
+
+2.  Instalar dependencias:
+
+``` bash
+npm install
+```
+
+3.  Ejecutar en modo desarrollo:
+
+``` bash
+npm run dev
+```
+
+La app se abrirá en `http://localhost:5173/`
+
+------------------------------------------------------------------------
+
+## 📦 Scripts disponibles
+
+-   `npm run dev` → Inicia el servidor de desarrollo\
+-   `npm run build` → Genera la build de producción\
+-   `npm run preview` → Previsualiza la build\
+-   `npm run lint` → Ejecuta ESLint
+
+------------------------------------------------------------------------
+
+## 🖼️ Captura de pantalla
+
+![Logo](./src/assets/logo.png)
+
+------------------------------------------------------------------------
+
+## ⚙️ Tecnologías usadas
+
+-   [React 19](https://react.dev/)\
+-   [Vite 7](https://vite.dev/)\
+-   [ESLint](https://eslint.org/) para reglas de estilo y buenas
+    prácticas\
+-   [LocalStorage](https://developer.mozilla.org/es/docs/Web/API/Window/localStorage)
+    para persistencia
+
+------------------------------------------------------------------------
+
+## 📊 Funcionalidades
+
+-   Formulario para añadir nuevas tareas.\
+-   Lista de tareas con opciones de ✅ completar, ✏️ editar y 🗑️
+    eliminar.\
+-   Estadísticas en tabla con **total, completadas y pendientes**.\
+-   Diseño simple y personalizable en `App.css`.
+
+------------------------------------------------------------------------
+
+## 👨‍💻 Autor
+
+Creado por **\[jorge andres garcia y paola andrea rios\]** ✨
